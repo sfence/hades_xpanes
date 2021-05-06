@@ -91,12 +91,12 @@ end)
 xpanes = {}
 function xpanes.register_pane(name, def)
 	for i = 1, 15 do
-		minetest.register_alias("xpanes:" .. name .. "_" .. i, "xpanes:" .. name .. "_flat")
+		minetest.register_alias("hades_xpanes:" .. name .. "_" .. i, "hades_xpanes:" .. name .. "_flat")
 	end
 
 	local flatgroups = table.copy(def.groups)
 	flatgroups.pane = 1
-	minetest.register_node(":xpanes:" .. name .. "_flat", {
+	minetest.register_node(":hades_xpanes:" .. name .. "_flat", {
 		description = def.description,
 		drawtype = "nodebox",
 		paramtype = "light",
@@ -114,7 +114,7 @@ function xpanes.register_pane(name, def)
 			def.textures[1]
 		},
 		groups = flatgroups,
-		drop = "xpanes:" .. name .. "_flat",
+		drop = "hades_xpanes:" .. name .. "_flat",
 		sounds = def.sounds,
 		use_texture_alpha = def.use_texture_alpha and "blend" or "clip",
 		node_box = {
@@ -131,7 +131,7 @@ function xpanes.register_pane(name, def)
 	local groups = table.copy(def.groups)
 	groups.pane = 1
 	groups.not_in_creative_inventory = 1
-	minetest.register_node(":xpanes:" .. name, {
+	minetest.register_node(":hades_xpanes:" .. name, {
 		drawtype = "nodebox",
 		paramtype = "light",
 		is_ground_content = false,
@@ -143,7 +143,7 @@ function xpanes.register_pane(name, def)
 			def.textures[1]
 		},
 		groups = groups,
-		drop = "xpanes:" .. name .. "_flat",
+		drop = "hades_xpanes:" .. name .. "_flat",
 		sounds = def.sounds,
 		use_texture_alpha = def.use_texture_alpha and "blend" or "clip",
 		node_box = {
@@ -158,7 +158,7 @@ function xpanes.register_pane(name, def)
 	})
 
 	minetest.register_craft({
-		output = "xpanes:" .. name .. "_flat 16",
+		output = "hades_xpanes:" .. name .. "_flat 16",
 		recipe = def.recipe
 	})
 end
@@ -168,11 +168,11 @@ xpanes.register_pane("pane", {
 	textures = {"default_glass.png", "", "xpanes_edge.png"},
 	inventory_image = "default_glass.png",
 	wield_image = "default_glass.png",
-	sounds = default.node_sound_glass_defaults(),
+	sounds = hades_sounds.node_sound_glass_defaults(),
 	groups = {snappy=2, cracky=3, oddly_breakable_by_hand=3},
 	recipe = {
-		{"default:glass", "default:glass", "default:glass"},
-		{"default:glass", "default:glass", "default:glass"}
+		{"hades_core:glass", "hades_core:glass", "hades_core:glass"},
+		{"hades_core:glass", "hades_core:glass", "hades_core:glass"}
 	}
 })
 
@@ -181,11 +181,11 @@ xpanes.register_pane("obsidian_pane", {
 	textures = {"default_obsidian_glass.png", "", "xpanes_edge_obsidian.png"},
 	inventory_image = "default_obsidian_glass.png",
 	wield_image = "default_obsidian_glass.png",
-	sounds = default.node_sound_glass_defaults(),
+	sounds = hades_sounds.node_sound_glass_defaults(),
 	groups = {snappy=2, cracky=3},
 	recipe = {
-		{"default:obsidian_glass", "default:obsidian_glass", "default:obsidian_glass"},
-		{"default:obsidian_glass", "default:obsidian_glass", "default:obsidian_glass"}
+		{"hades_core:obsidian_glass", "hades_core:obsidian_glass", "hades_core:obsidian_glass"},
+		{"hades_core:obsidian_glass", "hades_core:obsidian_glass", "hades_core:obsidian_glass"}
 	}
 })
 
@@ -195,15 +195,15 @@ xpanes.register_pane("bar", {
 	inventory_image = "xpanes_bar.png",
 	wield_image = "xpanes_bar.png",
 	groups = {cracky=2},
-	sounds = default.node_sound_metal_defaults(),
+	sounds = hades_sounds.node_sound_metal_defaults(),
 	recipe = {
-		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"}
+		{"hades_core:steel_ingot", "hades_core:steel_ingot", "hades_core:steel_ingot"},
+		{"hades_core:steel_ingot", "hades_core:steel_ingot", "hades_core:steel_ingot"}
 	}
 })
 
 minetest.register_lbm({
-	name = "xpanes:gen2",
+	name = "hades_xpanes:gen2",
 	nodenames = {"group:pane"},
 	action = function(pos, node)
 		update_pane(pos)
@@ -218,23 +218,23 @@ minetest.register_lbm({
 
 if minetest.get_modpath("doors") then
 
-	doors.register("xpanes:door_steel_bar", {
+	doors.register("hades_xpanes:door_steel_bar", {
 		tiles = {{name = "xpanes_door_steel_bar.png", backface_culling = true}},
 		description = S("Steel Bar Door"),
 		inventory_image = "xpanes_item_steel_bar.png",
 		protected = true,
 		groups = {node = 1, cracky = 1, level = 2},
-		sounds = default.node_sound_metal_defaults(),
+		sounds = hades_sounds.node_sound_metal_defaults(),
 		sound_open = "xpanes_steel_bar_door_open",
 		sound_close = "xpanes_steel_bar_door_close",
 		recipe = {
-			{"xpanes:bar_flat", "xpanes:bar_flat"},
-			{"xpanes:bar_flat", "xpanes:bar_flat"},
-			{"xpanes:bar_flat", "xpanes:bar_flat"},
+			{"hades_xpanes:bar_flat", "hades_xpanes:bar_flat"},
+			{"hades_xpanes:bar_flat", "hades_xpanes:bar_flat"},
+			{"hades_xpanes:bar_flat", "hades_xpanes:bar_flat"},
 		},
 	})
 
-	doors.register_trapdoor("xpanes:trapdoor_steel_bar", {
+	doors.register_trapdoor("hades_xpanes:trapdoor_steel_bar", {
 		description = S("Steel Bar Trapdoor"),
 		inventory_image = "xpanes_trapdoor_steel_bar.png",
 		wield_image = "xpanes_trapdoor_steel_bar.png",
@@ -242,16 +242,16 @@ if minetest.get_modpath("doors") then
 		tile_side = "xpanes_trapdoor_steel_bar_side.png",
 		protected = true,
 		groups = {node = 1, cracky = 1, level = 2, door = 1},
-		sounds = default.node_sound_metal_defaults(),
+		sounds = hades_sounds.node_sound_metal_defaults(),
 		sound_open = "xpanes_steel_bar_door_open",
 		sound_close = "xpanes_steel_bar_door_close",
 	})
 
 	minetest.register_craft({
-		output = "xpanes:trapdoor_steel_bar",
+		output = "hades_xpanes:trapdoor_steel_bar",
 		recipe = {
-			{"xpanes:bar_flat", "xpanes:bar_flat"},
-			{"xpanes:bar_flat", "xpanes:bar_flat"},
+			{"hades_xpanes:bar_flat", "hades_xpanes:bar_flat"},
+			{"hades_xpanes:bar_flat", "hades_xpanes:bar_flat"},
 		}
 	})
 end

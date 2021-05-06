@@ -8,6 +8,7 @@ Originally by xyz (MIT)
 BlockMen (MIT)
 sofar (MIT)
 Various Minetest developers and contributors (MIT)
+Changed for compatibility with Hades Revisited by SFENCE.
 
 Authors of media (textures)
 ---------------------------
