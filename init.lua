@@ -220,6 +220,7 @@ if minetest.get_modpath("doors") then
 
 	doors.register("hades_xpanes:door_steel_bar", {
 		tiles = {{name = "xpanes_door_steel_bar.png", backface_culling = true}},
+		use_texture_alpha = "opaque",
 		description = S("Steel Bar Door"),
 		inventory_image = "xpanes_item_steel_bar.png",
 		protected = true,
