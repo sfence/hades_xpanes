@@ -216,11 +216,11 @@ minetest.register_lbm({
 
 -- Register steel bar doors and trapdoors
 
-if minetest.get_modpath("doors") then
+if minetest.get_modpath("hades_doors") then
 
-	doors.register("hades_xpanes:door_steel_bar", {
+	hades_doors.register("hades_xpanes:door_steel_bar", {
 		tiles = {{name = "xpanes_door_steel_bar.png", backface_culling = true}},
-		use_texture_alpha = "opaque",
+		use_texture_alpha = "clip",
 		description = S("Steel Bar Door"),
 		inventory_image = "xpanes_item_steel_bar.png",
 		protected = true,
@@ -235,7 +235,7 @@ if minetest.get_modpath("doors") then
 		},
 	})
 
-	doors.register_trapdoor("hades_xpanes:trapdoor_steel_bar", {
+	hades_doors.register_trapdoor("hades_xpanes:trapdoor_steel_bar", {
 		description = S("Steel Bar Trapdoor"),
 		inventory_image = "xpanes_trapdoor_steel_bar.png",
 		wield_image = "xpanes_trapdoor_steel_bar.png",
