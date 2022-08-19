@@ -90,10 +90,6 @@ end)
 
 xpanes = {}
 function xpanes.register_pane(name, def)
-	for i = 1, 15 do
-		minetest.register_alias("hades_xpanes:" .. name .. "_" .. i, "hades_xpanes:" .. name .. "_flat")
-	end
-
 	local flatgroups = table.copy(def.groups)
 	flatgroups.pane = 1
 	minetest.register_node(":hades_xpanes:" .. name .. "_flat", {
